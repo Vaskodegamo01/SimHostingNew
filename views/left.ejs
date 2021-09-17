@@ -1,0 +1,27 @@
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">
+            <li>
+                <a href="/simpanel/dashboard"><i class="fa fa-dashboard fa-fw"></i> sim module</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fa fa-dashboard fa-fw"></i> phone <span class="caret"></span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <ul>
+                            <% if (dashboardphone.length)  { %>
+                                    <% dashboardphone.forEach(function(phone) { %>
+                                    <li><a href=<%=`/simpanel/phone?PhoneNumber=${encodeURIComponent(phone.PhoneNumber)}&Battery=${encodeURIComponent(phone.Battery ? phone.Battery : 1)}&QualityGSM=${encodeURIComponent(phone.QualityGSM ? phone.QualityGSM : 4 )}`%>><%=`${phone.PhoneNumber}`%></a></li>
+                                    <% }); %>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>
+<!-- /.navbar-static-side -->

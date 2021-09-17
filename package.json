@@ -1,0 +1,37 @@
+{
+  "name": "simhosting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon $NODE_DEBUG_OPTION server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vaskodegamo01/SimHosting.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vaskodegamo01/SimHosting/issues"
+  },
+  "homepage": "https://github.com/Vaskodegamo01/SimHosting#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "latest",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "ejs-locals": "^1.0.2",
+    "express": "^4.16.3",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.9.14",
+    "multer": "^1.4.2",
+    "nanoid": "^3.1.9",
+    "socket.io": "^2.1.1"
+  }
+}

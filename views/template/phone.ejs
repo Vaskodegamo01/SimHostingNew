@@ -1,0 +1,333 @@
+<% layout('../layout') %>
+<!-- Page Content -->
+<div class="modal fade" id="modalIdUSSD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="row">
+            <div class="col-sm-4" style="height: 30vh">
+                <div class="chat">
+                    <div id="chatMessages" class="chatMessage">
+                        <h6 style="color: snow">USSD sent message:</h6>
+                        <% if (dashboardussdmessage.length)  { %>
+                            <% dashboardussdmessage.forEach(function(ussdmessage) { %>
+                                <% if (ussdmessage.PhoneNumberFrom === ussdmessage.PhoneNumber.PhoneNumber)  { %>
+                            <div class="row message-body">
+                                <div class="col-sm-12 message-main">
+                                    <div class="sender">
+                                        <div class="row">
+                                                <span class="col message-time pull-right">
+                            <%=`${new Date(ussdmessage.createdAt).toLocaleDateString()} ${new Date(ussdmessage.createdAt).toLocaleTimeString().substr(0, 5)}`%>
+                        </span>
+                                        </div>
+                                        <div class="message-text">
+                                            <%=`${ussdmessage.USSDMessage}`%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <% } %>
+                            <% }); %>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-content col-sm-8">
+                <div class="modal-header">
+                    <h5 class="modal-title">send ussd</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <form method="post" action="/simpanel/ussd" id="modalEditFormUSSD" role="form" class="form-horizontal">
+                        <div class="form-group">
+                            <div class="form-group" style="display: none;">
+                                <label for="ussdphonenumberfrom" class="col-sm-3 control-label">PhoneNumberFrom</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control col-sm-10" name="ussdphonenumberfrom" placeholder="PhoneNumberFrom"
+                                           id="ussdphonenumberfrom"/>
+                                </div>
+                            </div>
+                            <label for="ussd" class="col-sm-3 control-label">USSD</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control col-sm-10" name="ussd" required="required"
+                                       placeholder="ussd"
+                                       id="ussd"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" onClick="editUSSD();" class="btn btn-primary">Save</button>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalIdSMS" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="row">
+            <div class="col-sm-4" style="height: 30vh">
+                <div class="chat">
+                    <div id="chatMessages" class="chatMessage">
+                        <h6 style="color: snow">SMS sent message:</h6>
+                        <% if (dashboardsmsmessage.length)  { %>
+                            <% dashboardsmsmessage.forEach(function(smsmessage) { %>
+                                <% if (smsmessage.PhoneNumberFrom === smsmessage.PhoneNumber.PhoneNumber)  { %>
+                                <div class="row message-body">
+                                    <div class="col-sm-12 message-main">
+                                        <div class="sender">
+                                            <div class="row">
+                                            <span class="col message-time pull-right">
+                            <%=`${new Date(smsmessage.createdAt).toLocaleDateString()} ${new Date(smsmessage.createdAt).toLocaleTimeString().substr(0, 5)}`%>
+                        </span>
+                                            </div>
+                                            <div class="message-text">
+                                                <%=`${smsmessage.SMSMessage}`%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+                            <% }); %>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-content col-sm-8">
+                <div class="modal-header">
+                    <h5 class="modal-title">send sms</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <form method="post" action="/simpanel/sms" id="modalEditFormSMS" role="form" class="form-horizontal">
+                        <div class="form-group" style="display: none;">
+                            <label for="smsphonenumberfrom" class="col-sm-3 control-label">PhoneNumberFrom</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control col-sm-10" name="smsphonenumberfrom" placeholder="PhoneNumberFrom"
+                                       id="smsphonenumberfrom"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="PhoneNumber" class="col-sm-3 control-label">PhoneNumber</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control col-sm-10" name="phonenumber" required="required"
+                                       placeholder="PhoneNumber"
+                                       id="PhoneNumber"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sms" class="col-sm-3 control-label">SMS</label>
+                            <div class="col-sm-9">
+                            <textarea cols="40" rows="3" class="form-control col-sm-10" name="sms" required="required"
+                                      placeholder="sms"
+                                      id="sms"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" onClick="editSMS();" class="btn btn-primary">Save</button>
+        </div>
+    </div>
+</div>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    <% if ( dashboardphonenumber.length ) { %>
+                        <%= `${dashboardphonenumber[0].PhoneNumber}` %>
+                    <% } %>
+                </h1>
+            </div>
+            <% if ( message ) { %>
+                <div class="flash"><%= message %></div>
+            <% } %>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-xs-6 col-sm-3">
+                <div class="battery">
+                    <div class="battery-level"></div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <ul id="signal-strength">
+                    <li class="very-weak">
+                        <div id="sig1"></div>
+                    </li>
+                    <li class="weak">
+                        <div id="sig2"></div>
+                    </li>
+                    <li class="strong">
+                        <div id="sig3"></div>
+                    </li>
+                    <li class="pretty-strong">
+                        <div id="sig4"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalIdUSSD" data-ussdphonenumberfrom=<%=`${dashboardphonenumber[0].PhoneNumber}`%>>send ussd
+                </button>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalIdSMS" data-smsphonenumberfrom=<%=`${dashboardphonenumber[0].PhoneNumber}`%>>send sms
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6" style="height: 60vh">
+                <h6>SMS message:</h6>
+                <div class="chat">
+                    <div id="chatMessages" class="chatMessage">
+                        <% if (dashboardsmsmessage.length)  { %>
+                            <% dashboardsmsmessage.forEach(function(smsmessage) { %>
+                                <div class="row message-body">
+                                    <div class="col-sm-12 message-main">
+                                        <div class=<%=`${smsmessage.NewSMSMessageFlag ? "receiver" : "sender"}`%>>
+                                            <div class="row">
+                        <span class="col message-username pull-left">
+                            <%=`${smsmessage.PhoneNumberFrom}`%>
+                        </span>
+                                                <span class="col message-time pull-right">
+                            <%=`${new Date(smsmessage.createdAt).toLocaleDateString()} ${new Date(smsmessage.createdAt).toLocaleTimeString().substr(0, 5)}`%>
+                        </span>
+                                            </div>
+                                            <div class="message-text">
+                                                <%=`${smsmessage.SMSMessage}`%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }); %>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" style="height: 60vh">
+                <h6>USSD message:</h6>
+                    <div class="chat">
+                        <div id="chatMessages" class="chatMessage">
+                            <% if (dashboardussdmessage.length)  { %>
+                                <% dashboardussdmessage.forEach(function(ussdmessage) { %>
+                                    <% if (ussdmessage.PhoneNumberFrom !== ussdmessage.PhoneNumber.PhoneNumber)  { %>
+                                <div class="row message-body">
+                                    <div class="col-sm-12 message-main">
+                                        <div class=<%=`${ussdmessage.NewUSSDMessageFlag ? "receiver" : "sender"}`%>>
+                                            <div class="row">
+                                                <span class="col message-time pull-right">
+                            <%=`${new Date(ussdmessage.createdAt).toLocaleDateString()} ${new Date(ussdmessage.createdAt).toLocaleTimeString().substr(0, 5)}`%>
+                        </span>
+                                            </div>
+                                            <div class="message-text">
+                                                <%=`${ussdmessage.USSDMessage}`%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <% } %>
+                                <% }); %>
+                            <% } %>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<script>
+    $(document).ready(function () {
+        $('#modalIdUSSD').on('show.bs.modal', function (event) {
+            console.log(event.relatedTarget);
+            $("#ussdphonenumberfrom").val($(event.relatedTarget).data('ussdphonenumberfrom'));
+        });
+        $('#modalIdSMS').on('show.bs.modal', function (event) {
+            console.log(event.relatedTarget);
+            $("#smsphonenumberfrom").val($(event.relatedTarget).data('smsphonenumberfrom'));
+        });
+    });
+
+    function editUSSD() {
+        $(`#modalEditFormUSSD`).submit();
+    }
+
+    function editSMS() {
+        $(`#modalEditFormSMS`).submit();
+    }
+
+    function findGetParameter(parameterName) {
+        var result = null,
+            tmp = [];
+        location.search
+            .substr(1)
+            .split("&")
+            .forEach(function (item) {
+                tmp = item.split("=");
+                if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+            });
+        return result;
+    }
+
+    function sig(s) {
+
+        for (var i = 4; i > 0; i--) {
+            document.getElementById('sig' + i).style.backgroundColor = "#13A92C";
+        }
+
+        for (var i = 4; i > s; i--) {
+            document.getElementById('sig' + i).style.backgroundColor = "#9FD1A7";
+        }
+
+    }
+
+    function updateBatteryDisplay(battery) {
+        var level = battery.level * 100;
+        var batteryLevel = jQuery('.battery .battery-level');
+        batteryLevel.css('width', level + '%');
+        batteryLevel.text(level + '%');
+        if (battery.charging) {
+            batteryLevel.addClass('charging');
+            batteryLevel.removeClass('high');
+            batteryLevel.removeClass('medium');
+            batteryLevel.removeClass('low');
+        } else if (level > 50) {
+            batteryLevel.addClass('high');
+            batteryLevel.removeClass('charging');
+            batteryLevel.removeClass('medium');
+            batteryLevel.removeClass('low');
+        } else if (level >= 25) {
+            batteryLevel.addClass('medium');
+            batteryLevel.removeClass('charging');
+            batteryLevel.removeClass('high');
+            batteryLevel.removeClass('low');
+        } else {
+            batteryLevel.addClass('low');
+            batteryLevel.removeClass('charging');
+            batteryLevel.removeClass('high');
+            batteryLevel.removeClass('medium');
+        }
+    }
+
+    // var battery = navigator.battery;
+    // updateBatteryDisplay(battery);
+    // battery.onchargingchange = function () {
+    //     updateBatteryDisplay(battery);
+    // };
+    // battery.onlevelchange = function () {
+    //     updateBatteryDisplay(battery);
+    // };
+    updateBatteryDisplay({charging: false, level: findGetParameter("Battery")});
+    sig(findGetParameter("QualityGSM"));
+
+</script>
+<!-- /#page-wrapper -->

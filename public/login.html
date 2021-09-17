@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
+    <link href="css/my.css" rel="stylesheet">
+    <link href="css/all.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body onload="showFlash();">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Sign In</h5>
+                    <div class="flash"></div>
+                    <form class="form-signin" id="form" method="post">
+                        <div class="form-label-group">
+                            <input type="login" name="login" id="inputLogin" class="form-control" placeholder="login" required autofocus>
+                            <label for="inputLogin">Login</label>
+                        </div>
+
+                        <div class="form-label-group">
+                            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                            <label for="inputPassword">Password</label>
+                        </div>
+
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">Remember password</label>
+                        </div>
+                        <button onclick="login();" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function login(){
+        document.forms["form"].submit();
+    }
+
+    function getCookie(cname)
+    {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(name)==0) {
+                return c.substring(name.length,c.length);
+            }
+        }
+
+        return false;
+    }
+
+    function showFlash()
+    {
+        var cookie = getCookie("flashes"); // you can change the cookie name in fos_http_cache.flash_message.name configuration option
+console.log(cookie);
+        if (!cookie) {
+            return;
+        }
+
+        var flashes = JSON.parse(decodeURIComponent(cookie));
+
+        var html = '';
+        for (var key in flashes) {
+            if (key === 'length' || !flashes.hasOwnProperty(key)) {
+                continue;
+            }
+            html = '<div class="alert alert-' + key + '">';
+            html += flashes[key];
+            html += '</div>';
+        }
+        // YOUR WORK: show flashes in your DOM...
+
+        // remove the cookie to not show flashes again
+        // the cookie path is controlled by the fos_http_cache.flash_message.path configuration option
+        document.cookie = "flashes=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/";
+    }
+</script>
+</body>
+</html>

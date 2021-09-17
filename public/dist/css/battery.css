@@ -1,0 +1,209 @@
+.battery:after {
+    background-color: #fff;
+    border: 2px solid #000;
+    content: "";
+    display: block;
+    height: 16px;
+    position: absolute;
+    right: -6px;
+    top: 6px;
+    width: 6px;
+}
+.battery {
+    background-color: #fff;
+    border: 2px solid #000;
+    height: 32px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 100px;
+}
+.battery .battery-level {
+    background-color: #666;
+    height: 100%;
+}
+.battery .battery-level.high {
+    background-color: #66CD00;
+}
+.battery .battery-level.medium {
+    background-color: #FCD116;
+}
+.battery .battery-level.low {
+    background-color: #FF3333;
+}
+.battery .battery-level {
+    text-align: center;
+}
+#signal-strength {
+    /*float: left;*/
+    text-align: justify;
+    height: 32px;;
+    list-style: none;
+    overflow: hidden;
+    /*margin-left: -30px;*/
+    /*-webkit-margin-before: 0em;*/
+    /*-webkit-margin-after: 0em;*/
+    /*-webkit-margin-start: 0px;*/
+    /*-webkit-margin-end: 0px;*/
+    /*-webkit-padding-start: 0px;*/
+}
+#signal-strength li {
+    display: inline-block;
+    width: 5px;
+    /*float: left;*/
+    height: 100%;
+    margin-right: 1px;
+}
+#signal-strength li.pretty-strong {
+    padding-top: 5px;
+}
+#signal-strength li.strong {
+    padding-top: 12px;
+}
+#signal-strength li.weak {
+    padding-top: 19px;
+}
+#signal-strength li.very-weak {
+    padding-top: 25px;
+}
+#signal-strength li div {
+    height: 100%;
+    background-color: #13A92C;
+}
+
+.message{
+
+}
+.message-main span {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    padding: 0 10px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.message-body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto;
+    height: auto;
+}
+
+.message-main {
+    padding: 3px 1px !important;
+}
+
+.message-main-sender {
+    padding: 3px 1px !important;
+}
+
+.receiver {
+    width: auto !important;
+    background: #ffffe6;
+    border-radius: 10px 10px 10px 0;
+    padding: 4px 10px 7px !important;
+    font-size: 12px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    display: block;
+    word-wrap: break-word;
+}
+
+.sender {
+    width: auto !important;
+    background: #dcf8c6;
+    border-radius: 10px 10px 0 10px;
+    padding: 4px 10px 7px !important;
+    font-size: 12px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    display: block;
+    word-wrap: break-word;
+}
+
+.message-text {
+    margin: 0 !important;
+    padding: 5px !important;
+    word-wrap:break-word;
+    font-weight: 300;
+    font-size: 14px;
+    padding-bottom: 0 !important;
+}
+
+.message-time {
+    margin: auto !important;
+    font-size: 12px;
+    text-align: right;
+    color: #9a9a9a;
+    display: block;
+}
+
+.message-username {
+    margin: 0 !important;
+    font-size: 12px;
+    text-align: left;
+    color: #9a4f50;
+    display: block;
+}
+
+.chat{
+    flex-grow: 3;
+    display: flex;
+    flex-direction: column;
+    background: #4e4e4e;
+    height: 100%;
+
+}
+.chatMessage{
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: block;
+    height: 1px;
+    min-height: 300px;
+    flex-grow: 1;
+    width: auto;
+}
+
+.reply {
+    height: 60px;
+    width: 100%;
+    background-color: #f5f1ee;
+    padding: 10px 5px 10px 5px !important;
+    margin: 0 !important;
+    z-index: 1000;
+}
+
+.reply-recording {
+    padding: 5px !important;
+}
+
+.reply-recording i {
+    text-align: center;
+    padding: 5px !important;
+    color: #93918f;
+    cursor: pointer;
+}
+
+.reply-send {
+    padding: 5px !important;
+    margin: auto;
+}
+
+.reply-main {
+    padding: 2px 5px !important;
+}
+
+.reply-main .myInput {
+    width: 100%;
+    resize: none;
+    overflow: hidden;
+    padding: 5px !important;
+    outline: none;
+    border: none;
+    text-indent: 5px;
+    box-shadow: none;
+    height: 100%;
+    font-size: 16px;
+}
+
+
+
